@@ -77,31 +77,29 @@ static void process_value(json_value* value, int depth)
 static void
 perform_cmd (char* cmd, char* opt)
 {
-	json_value* value = miio_cmd (cmd, opt);
-	if (value) {
-		process_value(value, 0);
-		json_value_free (value);
-	}
+	miio_cmd (cmd, opt);
+	//json_value* value = miio_cmd (cmd, opt);
+	//if (value) {
+	//	process_value(value, 0);
+	//	json_value_free (value);
+	//}
 }
 
 int main (int argc, char** argv)
 {
 	if (miio_init () != 0) { return -1; }
 
-	perform_cmd ("get_status", "");
-	perform_cmd ("get_consumable", "");
-	perform_cmd ("app_stop", "");
-	//perform_cmd ("get_clean_summary", "");
+	//perform_cmd ("get_status", "");
 
-#if 0
-	perform_cmd ("set_custom_mode", "\"params\": [70]");
-	perform_cmd ("get_custom_mode", "");
-	perform_cmd ("find_me", "");
-	perform_cmd ("app_start", "");
-	perform_cmd ("app_pause", "");
-	perform_cmd ("app_stop", "");
-	perform_cmd ("app_stop", ""); perform_cmd (fd, "app_charge", "");
-#endif
+	if(atoi(argv[1])==1){
+		perform_cmd ("set_power", "\"params\": [\"on\"]");
+		//printf("turned on\n");
+	} else {
+		perform_cmd ("set_power", "\"params\": [\"off\"]");
+		//printf("turned off\n");
+	}
+
+	//perform_cmd ("get_prop", "\"params\": [\"power\"]");
 
 	miio_cleanup ();
 	return 0;
