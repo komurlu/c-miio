@@ -1,5 +1,20 @@
-If you need to interface with a Xiaomi Mi Robot Vacuum and python isn't an option.
-https://github.com/rytilahti/python-miio
+Control Xiaomi Wifi Plug (chuangmi m3) without needing Python,Nodejs or additional tools/libraries.
 
-`MIROBO_IP` and `MIROBO_TOKEN` environment variable need to be set. Compare to
-https://github.com/haim0n/python-mirobo
+#### BUILD
+
+Run `make` 
+
+If you have a MIPS target,  edit cross-compiler path in `Makefile` and run
+
+`make ARCH=MIPS`
+
+#### RUN
+
+First, add your device IP and token in `run.sh` file.
+
+Execute `run.sh 1` to turn the plug on and `run.sh 0` to turn it off.
+
+
+
+Most of the code is taken from https://github.com/x42/c-miio
+
